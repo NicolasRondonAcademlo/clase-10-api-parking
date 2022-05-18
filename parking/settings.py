@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     "place",
     "vehicle",
     "rest_framework",
-'rest_framework_simplejwt'
+'rest_framework_simplejwt',
+'django_filters'
 ]
 
 MIDDLEWARE = [
@@ -79,18 +80,18 @@ WSGI_APPLICATION = 'parking.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': BASE_DIR / 'db.sqlite3',
-    # }
-    "default" : {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': "parking",
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': "localhost",
-        'PORT': "5432"
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
+    # "default" : {
+    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #     'NAME': "parking",
+    #     'USER': 'postgres',
+    #     'PASSWORD': 'postgres',
+    #     'HOST': "localhost",
+    #     'PORT': "5432"
+    # }
 }
 
 
@@ -137,7 +138,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
+    ),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 3,
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
 
 }
 
