@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     "vehicle",
     "rest_framework",
 'rest_framework_simplejwt',
-'django_filters'
+'django_filters',
+'drf_yasg'
 ]
 
 MIDDLEWARE = [
