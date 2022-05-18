@@ -9,11 +9,13 @@ from rest_framework.permissions import IsAdminUser
 from .permissions import IsOwnerOrReadOnlyVehicle
 
 
+
 # Create your views here.
 class RackItemViewSet(viewsets.ModelViewSet):
     queryset = RackItem.objects.all()
     serializer_class = RackItemSerializer
     permission_classes = [IsAdminUser, IsOwnerOrReadOnlyVehicle]
+
 
 
 class RackViewSet(viewsets.ModelViewSet):

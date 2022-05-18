@@ -36,6 +36,7 @@ class Rack(models.Model):
 class RackItem(models.Model):
     rack = models.ForeignKey(Rack, on_delete=models.CASCADE)
     vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
+ 
 
     def __str__(self):
         return f"{self.id} | {self.vehicle.plate} | {self.vehicle.owner.email} "
@@ -46,6 +47,8 @@ def update_status_rack(sender, instance, created, **kwargs):
         rack_item = instance
         rack_id = rack_item.rack.id
         rack = Rack.objects.get(pk=rack_id)
+        print(instance)
+        print(rack)
         rack.status = False
         rack.save()
 
